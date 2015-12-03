@@ -60,6 +60,16 @@
 !! state or reflect those of the United States Government or any
 !! agency thereof.
 
+MODULE MAIN
+
+  CHARACTER*512 :: out_buffer
+  CHARACTER*512 :: in_buffer
+
+  LOGICAL :: in_semaphore(1) = .false.
+  LOGICAL :: out_semaphore(1) = .false.
+
+  CONTAINS
+
 SUBROUTINE MFIX()
 !f2py threadsafe
 
@@ -898,3 +908,4 @@ SUBROUTINE write_parallel_info()
   RETURN
 END SUBROUTINE write_parallel_info
 
+END MODULE MAIN

@@ -16,6 +16,7 @@
 !-----------------------------------------------
       USE MFIX_netcdf
       USE bc
+      USE main
       USE cdist
       USE check
       USE coeff
@@ -152,6 +153,14 @@
 ! The TIME loop begins here.............................................
  100  CONTINUE
 
+      if (in_semaphore(1)) then
+         do while(.not.out_semaphore(1))
+            ! nothing
+         enddo
+         print *,"in_buffer is ",in_buffer
+         write(out_buffer,*) TIME
+         out_semaphore(1) = .false.
+      endif
 
 #ifdef socket
       IF(INTERACTIVE_MODE) THEN

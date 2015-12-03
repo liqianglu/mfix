@@ -16,6 +16,9 @@ PPFCCOMPILE = $(FC) $(DEFAULT_INCLUDES) $(INCLUDES) \
 .f.o:
 	$(PPFCCOMPILE) -c -o $@ $<
 
+.f90.o:
+	$(PPFCCOMPILE) -c -o $@ $<
+
 FC_MODEXT=mod
 
 # directory with all the *.mod files
@@ -52,8 +55,11 @@ mfix_LDADD = libmfix.a
 noinst_LIBRARIES = libmfix.a
 
 # mfix.f needs to be in mfix_SOURCES (not just libmfix_a_SOURCES) for gfortran 4.4
-mfix_SOURCES = model/mfix.f
+mfix_SOURCES = model/mfix.f model/main.f90
 libmfix_a_SOURCES = model/ODEPACK.F
+
+pymfix.so: libmfix.a model/main.f90
+	f2py -c -m pymfix -I$(top_builddir)/model $(top_srcdir)/model/main.f90 $(libmfix_a_OBJECTS)
 
 ################################################################
 #                                                              #

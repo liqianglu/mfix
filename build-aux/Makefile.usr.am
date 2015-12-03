@@ -45,7 +45,7 @@ mfix_LDADD += $(LIBMFIX)
 build:
 	$(LN_S) $(top_builddir) $@
 
-.PHONY: $(LIBMFIX) TAGS run test
+.PHONY: $(LIBMFIX) TAGS run test mfix.py pymfix.so
 
 # top level directory needs to be built first
 $(LIBMFIX):
@@ -110,6 +110,22 @@ postmfix$(EXEEXT): $(LIBMFIX)
 	$(MAKE) -C $(top_builddir) $@
 	rm -f $@
 	$(LN_S) $(top_builddir)/$@ $@
+
+################################################################
+#                                                              #
+#      Python launcher for mfix (for sockets support)          #
+#                                                              #
+################################################################
+
+pymfix.so:
+	$(MAKE) -C $(top_builddir) $@
+	rm -f $@
+	cp $(top_builddir)/$@ $@
+
+mfix.py: $(LIBMFIX)
+	$(MAKE) -C $(top_builddir) $@
+	rm -f $@
+	cp $(top_srcdir)/$@ $@
 
 ################################################################
 #                                                              #
