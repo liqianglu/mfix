@@ -1,3 +1,4 @@
+! -*- f90 -*-
 !vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvC
 !                                                                      C
 !  Module: fldvar                                                      C

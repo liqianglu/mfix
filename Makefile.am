@@ -16,9 +16,6 @@ PPFCCOMPILE = $(FC) $(DEFAULT_INCLUDES) $(INCLUDES) \
 .f.o:
 	$(PPFCCOMPILE) -c -o $@ $<
 
-.f90.o:
-	$(PPFCCOMPILE) -c -o $@ $<
-
 FC_MODEXT=mod
 
 # directory with all the *.mod files
@@ -55,11 +52,11 @@ mfix_LDADD = libmfix.a
 noinst_LIBRARIES = libmfix.a
 
 # mfix.f needs to be in mfix_SOURCES (not just libmfix_a_SOURCES) for gfortran 4.4
-mfix_SOURCES = model/mfix.f model/main.f90
+mfix_SOURCES = model/mfix.f model/main.f
 libmfix_a_SOURCES = model/ODEPACK.F
 
-pymfix.so: libmfix.a model/main.f90
-	f2py -c -m pymfix -I$(top_builddir)/model $(top_srcdir)/model/main.f90 $(libmfix_a_OBJECTS)
+pymfix.so: libmfix.a model/main.f
+	f2py -c -m pymfix -I$(top_builddir)/model $(top_srcdir)/model/main.f $(top_srcdir)/model/param_mod.f $(top_srcdir)/model/dmp_modules/compar_mod.f $(top_srcdir)/model/run_mod.f $(top_srcdir)/model/fldvar_mod.f   $(filter-out model/param_mod.o model/dmp_modules/compar_mod.o model/run_mod.o model/fldvar_mod.o,$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
 
 ################################################################
 #                                                              #
@@ -1156,6 +1153,7 @@ postmfix_SOURCES = \
 	model/qmomk/qmomk_write_restart.f \
 	model/radial_vel_correction.f \
 	model/rdf_mod.f \
+	model/main.f \
 	model/read_database.f \
 	model/read_namelist.f \
 	model/read_res1.f \
@@ -1315,6 +1313,7 @@ postmfix_SOURCES = \
 	post_mfix/get_same_time.f \
 	post_mfix/get_selection.f \
 	post_mfix/get_substr.f \
+	model/main.f \
 	post_mfix/granular_qty.f \
 	post_mfix/header_main.f \
 	post_mfix/ik_avg.f \

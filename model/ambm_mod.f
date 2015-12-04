@@ -1,3 +1,4 @@
+! -*- f90 -*-
 !vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv!
 !                                                                      !
 !  Module: ambm                                                        !

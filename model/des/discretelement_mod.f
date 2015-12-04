@@ -1,3 +1,4 @@
+! -*- f90 -*-
 !vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvC
 !                                                                      C
 !   Module name: DISCRETELEMENT                                        C

@@ -1,3 +1,4 @@
+! -*- f90 -*-
       MODULE param
 
 ! Parameters describing problem size: (set from user input)

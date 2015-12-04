@@ -1,3 +1,4 @@
+! -*- f90 -*-
       module cdist
 
       logical :: bDist_IO

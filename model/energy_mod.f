@@ -1,3 +1,4 @@
+! -*- f90 -*-
 MODULE energy
 
   USE fldvar

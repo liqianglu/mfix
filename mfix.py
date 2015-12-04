@@ -12,27 +12,23 @@ class Echo(protocol.Protocol):
 
     def dataReceived(self, data):
         "Called with data sent from client."
+        pymfix.main.request_pending = 1
 
-        # make sure that data is exactly 512 characters in size
-        data = data[:512]
-        data = list(data)+['']*(512-len(data))
-
-        # wait for semaphore to be free
-        while pymfix.main.in_semaphore[0]:
-            pass
-        pymfix.main.in_semaphore[0] = True
-
-        pymfix.main.in_buffer = data
-
-        # wait for mfix to reply
-        pymfix.main.out_semaphore[0] = True
-        while pymfix.main.out_semaphore[0]:
+        # wait for mfix to stop
+        while 1 != pymfix.main.mfix_waiting:
             pass
 
-        # print response from mfix
-        print(''.join(pymfix.main.out_buffer))
-        self.transport.write(''.join(pymfix.main.out_buffer))
-        pymfix.main.in_semaphore[0] = False
+        # change any variable...
+        # pymfix.run.time  = 1000
+        pymfix.run.tstop = pymfix.run.tstop/2
+        # pymfix.run.dt    = 10 # has no effect?
+
+        response = 'the pressure is %s \n tstop is %s' % (str(pymfix.fldvar.p_g[:100]),pymfix.run.tstop)
+        # print(response)
+        self.transport.write(response)
+
+        # resume mfix
+        pymfix.main.request_pending = 0
 
 def main():
     """This runs the protocol on port 8000"""

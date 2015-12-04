@@ -149,18 +149,16 @@
       CALL MARK_PHASE_4_COR (PHASE_4_P_G, PHASE_4_P_S, DO_CONT, MCP,&
           DO_P_S, SWITCH_4_P_G, SWITCH_4_P_S)
 
-
 ! The TIME loop begins here.............................................
  100  CONTINUE
 
-      if (in_semaphore(1)) then
-         do while(.not.out_semaphore(1))
-            ! nothing
-         enddo
-         print *,"in_buffer is ",in_buffer
-         write(out_buffer,*) TIME
-         out_semaphore(1) = .false.
-      endif
+      ! wait for request to finish
+      do while(1.eq.request_pending)
+         mfix_waiting = 1
+         ! without a write, this loop gets optimized away
+         write(*,fmt='(a)',advance='no') ''
+      enddo
+      mfix_waiting = 0
 
 #ifdef socket
       IF(INTERACTIVE_MODE) THEN
@@ -362,4 +360,3 @@
       IF(SOLVER_STATISTICS) CALL REPORT_SOLVER_STATS(NIT_TOTAL, NSTEP)
 
       END SUBROUTINE TIME_MARCH
-
