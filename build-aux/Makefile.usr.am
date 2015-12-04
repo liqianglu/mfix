@@ -11,7 +11,7 @@ PPFCCOMPILE = $(FC) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(PPFCCOMPILE) -c -o $@ $<
 
 FC_MODEXT=mod
-CLEANFILES=*.$(FC_MODEXT)
+CLEANFILES=*.$(FC_MODEXT) *.so mfix.py
 MODDIR=$(top_builddir)/model
 
 # Current directory takes precedence over model/include/ and model/
