@@ -65,8 +65,8 @@ MODULE MAIN
   CHARACTER*512 :: out_buffer
   CHARACTER*512 :: in_buffer
 
-  LOGICAL :: in_semaphore(1) = .false.
-  LOGICAL :: out_semaphore(1) = .false.
+  INTEGER :: request_pending = 0
+  INTEGER :: mfix_waiting = 0
 
   CONTAINS
 
