@@ -117,12 +117,12 @@ postmfix$(EXEEXT): $(LIBMFIX)
 #                                                              #
 ################################################################
 
-pymfix.so:
+pymfix.so: $(LIBMFIX)
 	$(MAKE) -C $(top_builddir) $@
 	rm -f $@
 	cp $(top_builddir)/$@ $@
 
-mfix.py: $(LIBMFIX)
+mfix.py: pymfix.so
 	$(MAKE) -C $(top_builddir) $@
 	rm -f $@
 	cp $(top_srcdir)/$@ $@

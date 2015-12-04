@@ -119,24 +119,25 @@
 !^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^!
       SUBROUTINE INTERPOLATE_PIC0
 
-      USE param
-      USE param1
-      USE parallel
-      USE physprop
-      USE fldvar, only: ep_g, u_g, v_g, w_g
-      USE run
-      USE geometry
-      USE indices
       USE bc
       USE compar
-      USE sendrecv
-      USE discretelement
       USE constant
       USE cutcell
-      USE interpolation
-      USE mfix_pic
+      USE derived_types, only: pic
+      USE discretelement
+      USE fldvar, only: ep_g, u_g, v_g, w_g
       USE fun_avg
       USE functions
+      USE geometry
+      USE indices
+      USE interpolation
+      USE mfix_pic
+      USE parallel
+      USE param
+      USE param1
+      USE physprop
+      USE run
+      USE sendrecv
 
       implicit none
 

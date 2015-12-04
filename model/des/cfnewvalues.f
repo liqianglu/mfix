@@ -23,6 +23,7 @@
 !-----------------------------------------------
       USE constant
       USE des_bc
+      USE derived_types, only: multisap, boxhandle
       USE discretelement
       USE fldvar
       USE mfix_pic

@@ -55,8 +55,24 @@ noinst_LIBRARIES = libmfix.a
 mfix_SOURCES = model/mfix.f model/main.f
 libmfix_a_SOURCES = model/ODEPACK.F
 
+################################################################
+#                                                              #
+#           pymfix Python module                               #
+#                                                              #
+################################################################
+
 pymfix.so: libmfix.a model/main.f
-	f2py -c -m pymfix -I$(top_builddir)/model $(top_srcdir)/model/main.f $(top_srcdir)/model/param_mod.f $(top_srcdir)/model/dmp_modules/compar_mod.f $(top_srcdir)/model/run_mod.f $(top_srcdir)/model/fldvar_mod.f   $(filter-out model/param_mod.o model/dmp_modules/compar_mod.o model/run_mod.o model/fldvar_mod.o,$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
+	f2py -c -m pymfix -I$(top_builddir)/model $(addprefix $(top_srcdir)/,$(pymfix_SOURCES)) $(filter-out $(pymfix_OBJECTS),$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
+
+pymfix_SOURCES = \
+	model/param_mod.f \
+	model/dmp_modules/compar_mod.f \
+	model/fldvar_mod.f \
+	model/des/discretelement_mod.f \
+	model/main.f \
+	model/run_mod.f
+
+pymfix_OBJECTS = $(pymfix_SOURCES:%.f=%.o)
 
 ################################################################
 #                                                              #
@@ -397,6 +413,7 @@ libmfix_src = \
 	model/des/comp_mean_fields.f \
 	model/des/comp_mean_fields0.f \
 	model/des/comp_mean_fields1.f \
+	model/des/derived_types_mod.f \
 	model/des/des_allocate_mod.f \
 	model/des/des_bc_mod.f \
 	model/des/des_cluster_mod.f \
@@ -563,6 +580,7 @@ libmfix_src = \
 	model/leqsol_mod.f \
 	model/location_check.f \
 	model/machine_mod.f \
+	model/main.f \
 	model/make_upper_case.f \
 	model/mark_phase_4_cor.f \
 	model/mfix.f \
@@ -948,6 +966,7 @@ postmfix_SOURCES = \
 	model/des/comp_mean_fields.f \
 	model/des/comp_mean_fields0.f \
 	model/des/comp_mean_fields1.f \
+	model/des/derived_types_mod.f \
 	model/des/des_allocate_mod.f \
 	model/des/des_bc_mod.f \
 	model/des/des_cluster_mod.f \
@@ -1109,6 +1128,7 @@ postmfix_SOURCES = \
 	model/leqsol_mod.f \
 	model/location_check.f \
 	model/machine_mod.f \
+	model/main.f \
 	model/make_upper_case.f \
 	model/mark_phase_4_cor.f \
 	model/mfix_netcdf_mod.f \
@@ -1153,7 +1173,6 @@ postmfix_SOURCES = \
 	model/qmomk/qmomk_write_restart.f \
 	model/radial_vel_correction.f \
 	model/rdf_mod.f \
-	model/main.f \
 	model/read_database.f \
 	model/read_namelist.f \
 	model/read_res1.f \
@@ -1313,7 +1332,6 @@ postmfix_SOURCES = \
 	post_mfix/get_same_time.f \
 	post_mfix/get_selection.f \
 	post_mfix/get_substr.f \
-	model/main.f \
 	post_mfix/granular_qty.f \
 	post_mfix/header_main.f \
 	post_mfix/ik_avg.f \

@@ -32,7 +32,7 @@
 ! Number of particles in indexed fluid cell
       use discretelement, only: PINC
 ! List of particles in each cell.
-      use discretelement, only: PIC
+      use derived_types, only: PIC
 ! Gas phae volume fraction, density, and build density
       use fldvar, only: EP_G, RO_G, ROP_G
 ! Bulk density of continuum solids phases

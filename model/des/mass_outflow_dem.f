@@ -9,6 +9,7 @@
 !^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^!
       SUBROUTINE MASS_OUTFLOW_DEM(FORCE_NSEARCH)
 
+      use derived_types, only: pic, dg_pic
       use discretelement
       use des_bc
       use bc

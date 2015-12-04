@@ -73,7 +73,7 @@
 ! Offset for particles with cycle BCs (otherwise zero)
       use desmpi, only: dcycl_offset
 ! Map of particles to DES grid
-      use discretelement, only: DG_PIC
+      use derived_types, only: DG_PIC
 ! Cell number of ghost particles
       use desmpi, only: iSENDINDICES
 
@@ -231,6 +231,7 @@
 
       use desmpi, only: iParticlePacketSize
       use desmpi, only: iPairPacketSize
+      use derived_types, only: dg_pic
 
       use functions
 

@@ -440,7 +440,7 @@
       use discretelement, only: DESGRIDSEARCH_KMAX
 ! Domain size specifed by the user.
       use geometry, only: XLENGTH, YLENGTH, ZLENGTH, NO_K
-      use discretelement, only: dg_pic
+      use derived_types, only: dg_pic
 
 ! Use the error manager for posting error messages.
 !---------------------------------------------------------------------//
@@ -709,6 +709,7 @@
 !------------------------------------------------------------------------
       subroutine desgrid_pic(plocate)
 
+      use derived_types, only: dg_pic
       use discretelement
       use geometry, only: no_k
 
@@ -840,6 +841,7 @@
       use constant
       use des_allocate, only: add_pair
       use desmpi_wrapper
+      use derived_types, only: dg_pic
       use discretelement
       use funits
       use geometry

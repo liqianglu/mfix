@@ -18,7 +18,8 @@
 ! The I/J/K, IJK, and phase index of each particle
       use discretelement, only: PIJK
 ! The number and list of particles in each fluid cell IJK.
-      use discretelement, only: PINC, PIC
+      use derived_types, only: PIC
+      use discretelement, only: PINC
 ! The East/North/Top face location of a given I/J/K index.
       use discretelement, only: XE, YN, ZT
 ! Flag for 2D simulations.

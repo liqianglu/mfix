@@ -15,6 +15,7 @@
       USE compar
       USE des_rxns
       USE des_thermo
+      USE derived_types, only: pic
       USE discretelement
       USE fldvar
       USE functions

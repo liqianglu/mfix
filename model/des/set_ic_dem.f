@@ -19,8 +19,9 @@
 
       use des_thermo, only: DES_T_s_NEW
 
+      use derived_types, only: PIC
       use discretelement, only: MAX_PIP
-      use discretelement, only: PINC, PIC
+      use discretelement, only: PINC
       use discretelement, only: PIJK
 
       USE des_rxns, only: DES_X_s

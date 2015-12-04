@@ -14,6 +14,7 @@
 !---------------------------------------------------------------------//
       USE calc_collision_wall
       USE constant, ONLY: Pi
+      USE derived_types, only: multisap, boxhandle
       USE des_thermo
       USE des_thermo_cond
       USE discretelement

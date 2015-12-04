@@ -12,6 +12,7 @@
       use bc
       use des_allocate
       use des_bc
+      use derived_types, only: dg_pic
       use discretelement
       use functions
 
@@ -397,6 +398,7 @@
       USE compar
       USE constant
       USE des_bc
+      USE derived_types, only: pic
       USE discretelement
       USE funits
       USE geometry

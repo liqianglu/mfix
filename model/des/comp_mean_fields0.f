@@ -5,34 +5,31 @@
 !-----------------------------------------------
 ! Modules
 !-----------------------------------------------
-      USE param
-      USE param1
-      USE parallel
-      USE constant
-      USE physprop
-      USE fldvar
-      USE run
-      USE geometry
-      USE indices
       USE bc
       USE compar
-      USE sendrecv
+      USE constant
+      USE cutcell
+      USE derived_types, only: pic
       USE discretelement
       USE drag
+      USE fldvar
+      USE geometry
+      USE indices
       USE interpolation
-      use desmpi
-      USE cutcell
       USE mfix_pic
       USE mpi_utility
-
-
-      use mpi_node_des, only: des_addnodevalues_mean_fields
-      use particle_filter, only: DES_REPORT_MASS_INTERP
-
-
+      USE parallel
+      USE param
+      USE param1
+      USE physprop
+      USE run
+      USE sendrecv
+      use desmpi
       use functions, only: FLUID_AT
       use functions, only: FUNIJK
       use functions, only: IS_ON_myPE_wobnd
+      use mpi_node_des, only: des_addnodevalues_mean_fields
+      use particle_filter, only: DES_REPORT_MASS_INTERP
 
       IMPLICIT NONE
 !-----------------------------------------------

@@ -12,6 +12,7 @@
       USE error_manager
       USE mpi_utility
       use bc
+      use derived_types, only: pic
       use discretelement
       use functions
       use pic_bc

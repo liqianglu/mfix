@@ -8,6 +8,7 @@
       SUBROUTINE INIT_SETTLING_DEM
 
       USE desgrid, ONLY: desgrid_pic
+      USE derived_types, only: multisap, boxhandle
       USE discretelement
       USE error_manager
       USE mpi_funs_des, ONLY: DES_PAR_EXCHANGE

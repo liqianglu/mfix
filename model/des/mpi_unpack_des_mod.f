@@ -531,7 +531,7 @@
 
       use discretelement, only: iGLOBAL_ID
       use desgrid, only: DG_IJKStart2, DG_IJKEnd2
-      use discretelement, only: dg_pic
+      use derived_types, only: dg_pic
 
       implicit none
 
@@ -579,7 +579,8 @@
 !------------------------------------------------------------------------
       LOGICAL FUNCTION EXTEN_LOCATE_PAR(pGlobalID, pIJK, pLocalNO)
 
-      use discretelement, only: iGLOBAL_ID, dg_pic
+      use derived_types, only: dg_pic
+      use discretelement, only: iGLOBAL_ID
       use desgrid, only: DG_IJKStart2, DG_IJKEnd2
       use desgrid, only: dg_Iof_LO, DG_Jof_LO, DG_Kof_LO
       use geometry, only: NO_K

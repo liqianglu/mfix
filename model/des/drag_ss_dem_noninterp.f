@@ -13,7 +13,8 @@
 ! Global Variables:
 !---------------------------------------------------------------------//
 ! The count and a list of particles in IJK
-      use discretelement, only: PINC, PIC
+      use discretelement, only: PINC
+      use derived_types, only: PIC
 ! Particle velocity and density
       use discretelement, only: DES_VEL_NEW, RO_SOL
 ! Particle radius and volume.
@@ -163,7 +164,8 @@
 ! Global Variables:
 !---------------------------------------------------------------------//
 ! The count and a list of particles in IJK
-      use discretelement, only: PINC, PIC
+      use derived_types, only: PIC
+      use discretelement, only: PINC
 ! Particle velocity and density
       use discretelement, only: DES_VEL_NEW, RO_SOL
 ! Particle radius and volume.
@@ -403,7 +405,8 @@
 ! Global Variables:
 !---------------------------------------------------------------------//
 ! The count and a list of particles in IJK
-      use discretelement, only: PINC, PIC
+      use derived_types, only: PIC
+      use discretelement, only: PINC
 ! Particle volume and radius
       use discretelement, only: PVOL, DES_RADIUS
 ! Volume of scalar cell

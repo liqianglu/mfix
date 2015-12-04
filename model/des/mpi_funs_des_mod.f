@@ -172,7 +172,8 @@
 !----------------------------------------------------------------------!
       SUBROUTINE DESMPI_CHECK_SENDRECVBUF(check_global)
 
-      use discretelement, only: DIMN, dg_pic
+      use derived_types, only: dg_pic
+      use discretelement, only: DIMN
       use desmpi, only: iMAXBUF
       use desmpi, only: iBUFOFFSET
       use desmpi, only: dSENDBUF, dRECVBUF
@@ -256,7 +257,8 @@
       use discretelement, only: PIP
       use discretelement, only: iGHOST_CNT
       use discretelement, only: DES_USR_VAR_SIZE, DES_USR_VAR
-      use discretelement, only: dg_pic, pijk
+      use derived_types, only: dg_pic
+      use discretelement, only: pijk
 
       use run, only: ENERGY_EQ,ANY_SPECIES_EQ
       use des_thermo, only: DES_T_s_NEW, DES_T_s_OLD

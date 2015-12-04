@@ -24,22 +24,23 @@ CONTAINS
 !-----------------------------------------------
 ! Modules
 !-----------------------------------------------
+      USE constant
+      USE cutcell
+      USE derived_types, only: boxhandle, pic
+      USE discretelement
+      USE functions
+      USE mfix_pic
       USE param
       USE param1
-      USE constant
-      USE discretelement
-      Use indices
-      Use geometry
       Use compar
-      Use physprop
       Use des_bc
+      Use des_rxns
+      Use des_thermo
+      Use geometry
+      Use indices
+      Use physprop
       Use pic_bc
       use funits
-      USE mfix_pic
-      Use des_thermo
-      Use des_rxns
-      USE cutcell
-      USE functions
 
       use run, only: ENERGY_EQ
       use run, only: ANY_SPECIES_EQ
@@ -510,6 +511,7 @@ CONTAINS
 
         USE des_rxns
         USE des_thermo
+        USE derived_types, only: boxhandle
         USE discretelement
         USE mfix_pic
         USE multi_sweep_and_prune, ONLY: boxhandle_grow, do_sap

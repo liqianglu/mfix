@@ -27,6 +27,7 @@
       USE bc
       USE compar
       USE sendrecv
+      USE derived_types, only: pic
       USE discretelement
       USE drag
       USE interpolation
@@ -207,24 +208,25 @@
 !-----------------------------------------------
 ! Modules
 !-----------------------------------------------
-      USE param
-      USE param1
-      USE constant
-      USE physprop
-      USE fldvar
-      USE run
-      USE geometry
-      USE indices
       USE bc
       USE compar
-      USE sendrecv
+      USE constant
+      USE cutcell
+      USE derived_types, only: pic
       USE discretelement
       USE drag
-      USE interpolation
-      use desmpi
-      USE cutcell
-      USE mfix_pic
+      USE fldvar
       USE functions
+      USE geometry
+      USE indices
+      USE interpolation
+      USE mfix_pic
+      USE param
+      USE param1
+      USE physprop
+      USE run
+      USE sendrecv
+      use desmpi
       use mpi_node_des, only: des_addnodevalues
 
       IMPLICIT NONE
