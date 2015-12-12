@@ -66,15 +66,6 @@ AM_CONDITIONAL([USE_NETCDF], [test ! -z "$NETCDF_INCLUDE"])
 AC_ARG_VAR([TAU_MAKEFILE],[ Path to TAU Makefile ])
 AC_ARG_VAR([TAU_F90],[ Actual Fortran compiler used by TAU compiler wrapper ])
 
-AC_ARG_ENABLE([socket],
-[  --enable-socket    Turn on socket support],
-[case "${enableval}" in
-  yes) socket=true ;;
-  no)  socket=false ;;
-  *) AC_MSG_ERROR([bad value ${enableval} for --enable-socket]) ;;
-esac],[socket=false])
-AM_CONDITIONAL([USE_SOCKET], [test x$socket = xtrue])
-
 AC_ARG_ENABLE([smp],
 [  --enable-smp    Turn on OpenMP support],
 [case "${enableval}" in

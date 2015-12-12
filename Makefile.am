@@ -62,9 +62,9 @@ libmfix_a_SOURCES = model/ODEPACK.F
 ################################################################
 
 pymfix.so: libmfix.a
-	f2py -c -m pymfix -I$(top_builddir)/model $(addprefix $(top_srcdir)/,$(pymfix_SOURCES)) $(filter-out $(pymfix_OBJECTS),$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
+	f2py -c -m pymfix -I$(top_builddir)/model $(addprefix $(top_srcdir)/,$(pymfix_src)) $(filter-out $(pymfix_OBJECTS),$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
 
-pymfix_SOURCES = \
+pymfix_src = \
 	model/param_mod.f \
 	model/dmp_modules/compar_mod.f \
 	model/fldvar_mod.f \
@@ -72,7 +72,7 @@ pymfix_SOURCES = \
 	model/main.f \
 	model/run_mod.f
 
-pymfix_OBJECTS = $(pymfix_SOURCES:%.f=%.o)
+pymfix_OBJECTS = $(pymfix_src:%.f=%.o)
 
 ################################################################
 #                                                              #
@@ -143,15 +143,6 @@ export TAU_MAKEFILE
 if USE_NETCDF
 AM_FCFLAGS += $(FC_MODINC)$(NETCDF_INCLUDE)
 mfix_LDADD += -L$(NETCDF_LIB) -lnetcdff
-endif
-
-################################################################
-#      Socket server
-################################################################
-if USE_SOCKET
-AM_FCFLAGS += $(FC_DEFINE)socket
-libmfix_a_SOURCES += model/handle_command.f
-libmfix_a_SOURCES += model/socket.c
 endif
 
 ################################################################

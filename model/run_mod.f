@@ -16,9 +16,7 @@
 !---------------------------------------------------------------------//
       use param, only: dim_M, dim_eqs
       use param1, only: UNDEFINED_I
-      USE, INTRINSIC :: ISO_C_BINDING
 !---------------------------------------------------------------------//
-
 
 ! Main filename to be used for output files  Name must
 ! still be legal after extensions are added to it.
@@ -49,7 +47,7 @@
       DOUBLE PRECISION :: TSTOP
 
 ! Time step.
-      REAL(C_DOUBLE), bind(C, name="simulation_time") :: DT
+      DOUBLE PRECISION :: DT
 
 ! 1./Time step.
       DOUBLE PRECISION :: oDT
