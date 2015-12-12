@@ -5,7 +5,11 @@ from twisted.internet import reactor, protocol
 import pymfix
 
 def run_mfix():
-    pymfix.main.mfix()
+    pymfix.main.setup()
+    pymfix.main.start()
+    while pymfix.main.time < pymfix.main.tstop:
+        pymfix.main.step()
+    pymfix.main.end()
 
 class Echo(protocol.Protocol):
     """This is just about the simplest possible protocol"""

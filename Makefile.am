@@ -52,7 +52,7 @@ mfix_LDADD = libmfix.a
 noinst_LIBRARIES = libmfix.a
 
 # mfix.f needs to be in mfix_SOURCES (not just libmfix_a_SOURCES) for gfortran 4.4
-mfix_SOURCES = model/mfix.f model/main.f
+mfix_SOURCES = model/mfix.f
 libmfix_a_SOURCES = model/ODEPACK.F
 
 ################################################################
@@ -61,7 +61,7 @@ libmfix_a_SOURCES = model/ODEPACK.F
 #                                                              #
 ################################################################
 
-pymfix.so: libmfix.a model/main.f
+pymfix.so: libmfix.a
 	f2py -c -m pymfix -I$(top_builddir)/model $(addprefix $(top_srcdir)/,$(pymfix_SOURCES)) $(filter-out $(pymfix_OBJECTS),$(libmfix_a_OBJECTS)) --f90flags="-ffree-form"
 
 pymfix_SOURCES = \
@@ -709,7 +709,6 @@ libmfix_src = \
 	model/thermochemical/get_values.f \
 	model/thermochemical/read_thermochemical_mod.f \
 	model/time_cpu_mod.f \
-	model/time_march.f \
 	model/tmp_array1_mod.f \
 	model/tmp_array_mod.f \
 	model/toleranc_mod.f \
@@ -1248,7 +1247,6 @@ postmfix_SOURCES = \
 	model/thermochemical/get_values.f \
 	model/thermochemical/read_thermochemical_mod.f \
 	model/time_cpu_mod.f \
-	model/time_march.f \
 	model/tmp_array1_mod.f \
 	model/tmp_array_mod.f \
 	model/toleranc_mod.f \
