@@ -27,6 +27,7 @@
       USE residual
       USE toleranc
       USE leqsol
+      USE functions
       IMPLICIT NONE
 !-----------------------------------------------
 ! Dummy arguments
@@ -125,10 +126,10 @@
       ENDIF
 ! ----------------------------------------------------------------<<<
 
-
 ! Solve the linear system of equations
 ! ---------------------------------------------------------------->>>
-      SELECT CASE (METHOD)
+
+      SELECT CASE (3)
       CASE (1)
 ! SOR: Successive Sver Relaxation method from Templates
         CALL LEQ_SOR (VNAME, VNO, VAR, A_M(:,:,M), B_M(:,M), &

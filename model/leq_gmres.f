@@ -40,9 +40,9 @@
 !     e_Turb_G
       DOUBLE PRECISION, DIMENSION(DIMENSION_3), INTENT(INOUT) :: Var
 ! Septadiagonal matrix A_m
-      DOUBLE PRECISION, DIMENSION(DIMENSION_3,-3:3), INTENT(INOUT) :: A_m
+      DOUBLE PRECISION, DIMENSION(DIMENSION_3,-3:3), INTENT(IN) :: A_m
 ! Vector b_m
-      DOUBLE PRECISION, DIMENSION(DIMENSION_3), INTENT(INOUT) :: B_m
+      DOUBLE PRECISION, DIMENSION(DIMENSION_3), INTENT(IN) :: B_m
 ! Sweep direction of leq solver (leq_sweep)
 !     e.g., options = 'isis', 'rsrs' (default), 'asas'
       CHARACTER(LEN=*), INTENT(IN) :: CMETHOD
@@ -106,6 +106,7 @@
       USE mpi_utility, only: global_all_and, global_all_or, global_all_max, global_all_min
       USE param, only: dimension_3
       USE param1, only: one, zero
+      USE functions
 
       IMPLICIT NONE
 !-----------------------------------------------
@@ -121,9 +122,9 @@
 !     e_Turb_G
       DOUBLE PRECISION, INTENT(INOUT) :: Var(DIMENSION_3)
 ! Septadiagonal matrix A_m
-      DOUBLE PRECISION, INTENT(INOUT) :: A_m(DIMENSION_3,-3:3)
+      DOUBLE PRECISION, INTENT(IN) :: A_m(DIMENSION_3,-3:3)
 ! Vector b_m
-      DOUBLE PRECISION, INTENT(INOUT) :: B_m(DIMENSION_3)
+      DOUBLE PRECISION, INTENT(IN) :: B_m(DIMENSION_3)
 ! Sweep direction of leq solver (leq_sweep)
 !     e.g., options = 'isis', 'rsrs' (default), 'asas'
       CHARACTER(LEN=*), INTENT(IN) :: CMETHOD
@@ -254,6 +255,7 @@
 ! begin iteration
       DO ITER=1,MAX_IT
 ! ---------------------------------------------------------------->>>
+         print *,"ITER== ",ITER
 
 ! r = M \ (b-A*x)
 ! --------------------------------
@@ -296,6 +298,32 @@
          DO I=1,M    ! M->restrt->itmax
 ! w = M \ (A*V(:,i))
 ! --------------------------------
+            print *,"i = ",i," m = ",m
+
+            if (i > 18) THEN
+
+               open(unit=123,file="/Users/mmeredith/my_gmres/AA.dat")
+               ! write(123,*) SHAPE( A_M )
+               DO IJK = IJKSTART3, IJKEND3
+                  write(123,*) IJK, km_of(ijk), A_m(ijk,-3)
+                  write(123,*) IJK, jm_of(ijk), A_m(ijk,-2)
+                  write(123,*) IJK, im_of(ijk), A_m(ijk,-1)
+                  write(123,*) IJK, ijk, A_m(ijk,0)
+                  write(123,*) IJK, ip_of(ijk), A_m(ijk,1)
+                  write(123,*) IJK, jm_of(ijk), A_m(ijk,2)
+                  write(123,*) IJK, kp_of(ijk), A_m(ijk,3)
+               ENDDO
+               close(123)
+               open(unit=123,file="/Users/mmeredith/my_gmres/bb.dat")
+               ! write(123,*) SHAPE( B_M )
+               DO IJK = IJKSTART3, IJKEND3
+                  write(123,*) b_m(ijk)
+               ENDDO
+               close(123)
+
+               stop __LINE__
+            ENDIF
+
             CALL MATVEC(VNAME, V(:,I), A_M, TEMP)   ! returns TEMP=A*V
 ! Solve A*WW(:) = TEMP(:)
             CALL MSOLVE(VNAME, TEMP, A_M, WW, CMETHOD)   ! returns WW

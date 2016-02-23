@@ -470,7 +470,7 @@
 
 !      isconverged = (real(Rnorm) <= TOL*Rnorm0);
       if(.NOT.isConverged) isconverged = (real(Rnorm) <= TOL*Rnorm0);
-!     write(*,*) '***',iter, isconverged, Rnorm, TOL, Rnorm0, myPE
+     print *, '***',iter, isconverged, Rnorm, TOL, Rnorm0, myPE
       IER = 0
       if (.not.isconverged) then
          IER = -1

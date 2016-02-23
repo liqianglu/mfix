@@ -25,6 +25,9 @@
       use run, only: momentum_x_eq, momentum_y_eq
       use usr_src, only: call_usr_source, calc_usr_source
       use usr_src, only: pressure_correction
+      use compar
+      use functions
+      use run, only: time
       IMPLICIT NONE
 
 ! Local parameters
@@ -50,7 +53,7 @@
 ! Local variables
 !---------------------------------------------------------------------//
 ! phase index
-      INTEGER :: M
+      INTEGER :: M, ijk
 ! Normalization factor for gas pressure correction residual
       DOUBLE PRECISION :: NORMGloc
 ! linear equation solver method and iterations
@@ -116,8 +119,36 @@
 
 !     call check_symmetry(A_m, 0, IER)
 !     call test_lin_eq(A_M, LEQ_IT(1),LEQ_METHOD(1), LEQ_SWEEP(1), LEQ_TOL(1), LEQ_PC(1),0,IER)
+
+       ! open(unit=123,file="/Users/mmeredith/my_gmres/AA.dat")
+       ! ! write(123,*) SHAPE( A_M )
+       ! DO IJK = IJKSTART3, IJKEND3
+       !    write(123,*) IJK, km_of(ijk), A_m(ijk,-3,0)
+       !    write(123,*) IJK, jm_of(ijk), A_m(ijk,-2,0)
+       !    write(123,*) IJK, im_of(ijk), A_m(ijk,-1,0)
+       !    write(123,*) IJK, ijk, A_m(ijk,0,0)
+       !    write(123,*) IJK, ip_of(ijk), A_m(ijk,1,0)
+       !    write(123,*) IJK, jm_of(ijk), A_m(ijk,2,0)
+       !    write(123,*) IJK, kp_of(ijk), A_m(ijk,3,0)
+       ! ENDDO
+       ! close(123)
+       ! open(unit=123,file="/Users/mmeredith/my_gmres/bb.dat")
+       ! ! write(123,*) SHAPE( B_M )
+       ! DO IJK = IJKSTART3, IJKEND3
+       !    write(123,*) b_m(ijk,0)
+       ! ENDDO
+       ! close(123)
+
+       ! if (TIME>0.0001) then
+       !    print *,"WE WILL ONLY TOLERATE ",leq_tol(1)
+       !    stop 123
+       ! endif
+
+       print *,"===================="
+
       CALL SOLVE_LIN_EQ ('Pp_g', 1, PP_G, A_M, B_M, 0, LEQI, LEQM, &
                          LEQ_SWEEP(1), LEQ_TOL(1), LEQ_PC(1), IER)
+      print *,"===================="
 
 !      call out_array(Pp_g, 'Pp_g')
 
